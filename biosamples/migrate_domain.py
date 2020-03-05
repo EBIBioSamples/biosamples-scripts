@@ -1,4 +1,12 @@
+from config_params import ACCESSION_FILE_PATH
 from mongo_connector import MongoConnector
+
+
+def main():
+    domain_migrator = DomainMigrator()
+    # domain_migrator.migrate_domain('SAMEA671223413', 'self.FakeDomain', 'self.MyDomain')
+    # domain_migrator.migrate_domains(['SAMEA6712333', 'SAMEA671223413'], '', 'self.biosampleCuration2')
+    domain_migrator.migrate_all_in_file(ACCESSION_FILE_PATH, 'self.FakeDomain', 'self.MyDomain')
 
 
 class DomainMigrator:
@@ -35,7 +43,4 @@ class DomainMigrator:
 
 
 if __name__ == '__main__':
-    domain_migrator = DomainMigrator()
-    # domain_migrator.migrate_domain('SAMEA671223413', 'self.1234sdfsf', 'self.biosampleCuration')
-    # domain_migrator.migrate_domains(['SAMEA6712333', 'SAMEA671223413'], None, 'self.biosampleCuration2')
-    domain_migrator.migrate_all_in_file('../resources/accessions_to_migrate_domain.txt', 'self.BioSamplesMigration', 'self.3a7d2d8567da810952358e87c0fb9fe63f694f1bd4786e8a25a08cd406ed133a')
+    main()

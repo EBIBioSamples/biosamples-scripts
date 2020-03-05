@@ -7,9 +7,13 @@ Scripts for data manipulation in BioSamples
 - `hipsci_ega_link_import.py`- Import EGA links to BioSamples using HipSci data
 
 ## How to Run
+- Copy relevant files into  `PROJECT_HOME/resources` directory.
+- Create `.env` file with configurations
+- Install dependencies `pip install requirements.txt` (consider using virtualenv)
+- Run desired script `python biosamples/migrate_domain.py`
 
 ### Configurations
-Configuration is read from `.env` file in your project folder. You can copy this from BioSamples internal repository. It looks like something below.
+Configuration is read from `.env` file in your project directory. You can copy this from BioSamples internal repository. It should look like below.
 ```
 BIOSAMPLES_URL=https:localhost:8081
 AAP_URL=https://api.aai.ebi.ac.uk/auth
