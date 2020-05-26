@@ -6,7 +6,8 @@ def main():
     domain_migrator = DomainMigrator()
     # domain_migrator.migrate_domain('SAMEA671223413', 'self.FakeDomain', 'self.MyDomain')
     # domain_migrator.migrate_domains(['SAMEA6712333', 'SAMEA671223413'], '', 'self.biosampleCuration2')
-    domain_migrator.migrate_all_in_file(ACCESSION_FILE_PATH, 'self.FakeDomain', 'self.MyDomain')
+    # domain_migrator.migrate_all_in_file(ACCESSION_FILE_PATH, 'self.FakeDomain', 'self.MyDomain')
+    domain_migrator.migrate_all_from_old_to_new('self.76330293e830ea8a0decaa0bbcc0c85d4e53c3ef3e6bf317efc29cfb11f2baea', 'subs.team-41')
 
 
 class DomainMigrator:
@@ -19,9 +20,11 @@ class DomainMigrator:
         print("Migrated " + str(len(accession_list)) + " samples")
 
     def migrate_all_from_old_to_new(self, old_domain, new_domain):
-        samples = self.mongo_connector.get_sample({'domain': old_domain})
+        samples = self.mongo_connector.get_samples({'domain': old_domain})
         for sample in samples:
-            self.migrate_domain(sample['_id'], old_domain, new_domain)
+            accession = sample['_id']
+            self.migrate_domain(accession, old_domain, new_domain)
+            print("Domain migrated for sample : " + accession)
 
     def migrate_domains(self, accessions, old_domain, new_domain):
         for accession in accessions:

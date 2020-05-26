@@ -14,7 +14,7 @@ class MongoConnector:
     def __init__(self):
         if DB_USERNAME:
             self.client = MongoClient(DB_URL, username=DB_USERNAME, password=DB_PASSWORD,
-                                  authSource='admin', authMechanism='SCRAM-SHA-1')
+                                      authSource='admin', authMechanism='SCRAM-SHA-1')
         else:
             self.client = MongoClient(DB_URL)
         self.db = self.client.biosamples
@@ -25,8 +25,8 @@ class MongoConnector:
             yield curation
 
     def get_samples(self, find_query):
-        sample = self.db[MongoCollections.SAMPLE.value].find(find_query)
-        for curation in sample:
+        samples = self.db[MongoCollections.SAMPLE.value].find(find_query)
+        for sample in samples:
             yield sample
 
     def get_sample(self, accession):
