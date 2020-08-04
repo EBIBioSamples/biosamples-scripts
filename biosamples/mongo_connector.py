@@ -37,3 +37,9 @@ class MongoConnector:
         find = {"_id": accession}
         update = {"$set": {field: value}}
         self.db[MongoCollections.SAMPLE.value].update_one(find, update)
+
+    def create_sample(self, sample):
+        return self.db[MongoCollections.SAMPLE.value].insert_one(sample, upsert=True).inserted_id
+
+    def upsert_sample(self, sample):
+        return self.db[MongoCollections.SAMPLE.value].replace_one({"_id": sample["_id"]}, sample, upsert=True)

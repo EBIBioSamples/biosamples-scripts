@@ -10,7 +10,7 @@ DB_URL = config("DB_URL", default="localhost")
 DB_USERNAME = config("DB_USERNAME")
 DB_PASSWORD = config("DB_PASSWORD")
 
-ACCESSION_FILE_PATH = config("ACCESSION_FILE_PATH", default="../resources/accession_list.txt")
+ACCESSION_FILE_PATH = config("ACCESSION_FILE_PATH", default="../resources/accessions_to_migrate_domain.txt")
 HIPSCI_DATA_FILE_PATH = config("HIPSCI_DATA_FILE_PATH", default="../resources/hipsci_samples_ega_mapping.json")
 
 print("Reading configurations....")

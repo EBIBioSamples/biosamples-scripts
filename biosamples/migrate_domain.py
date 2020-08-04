@@ -1,13 +1,15 @@
-from config_params import ACCESSION_FILE_PATH
 from mongo_connector import MongoConnector
 
+
+ACCESSION_FILE_PATH = "../resources/accessions_to_migrate_domain.txt"
 
 def main():
     domain_migrator = DomainMigrator()
     # domain_migrator.migrate_domain('SAMEA671223413', 'self.FakeDomain', 'self.MyDomain')
     # domain_migrator.migrate_domains(['SAMEA6712333', 'SAMEA671223413'], '', 'self.biosampleCuration2')
-    # domain_migrator.migrate_all_in_file(ACCESSION_FILE_PATH, 'self.FakeDomain', 'self.MyDomain')
-    domain_migrator.migrate_all_from_old_to_new('self.76330293e830ea8a0decaa0bbcc0c85d4e53c3ef3e6bf317efc29cfb11f2baea', 'subs.team-41')
+    domain_migrator.migrate_all_in_file(ACCESSION_FILE_PATH, 'subs.team-41', 'self.BioSamplesMigration')
+    # domain_migrator.migrate_all_from_old_to_new('76330293e830ea8a0decaa0bbcc0c85d4e53c3ef3e6bf317efc29cfb11f2baea', 'subs.team-41')
+    # domain_migrator.migrate_all_from_old_to_new('subs.team-34', 'self.team-34')
 
 
 class DomainMigrator:
@@ -24,7 +26,6 @@ class DomainMigrator:
         for sample in samples:
             accession = sample['_id']
             self.migrate_domain(accession, old_domain, new_domain)
-            print("Domain migrated for sample : " + accession)
 
     def migrate_domains(self, accessions, old_domain, new_domain):
         for accession in accessions:
@@ -34,6 +35,7 @@ class DomainMigrator:
         domain_in_db = self.mongo_connector.get_sample(accession)['domain']
         if not old_domain or old_domain == domain_in_db:
             self.mongo_connector.update_sample(accession, 'domain', new_domain)
+            print("Domain migrated for sample : " + accession)
         else:
             print("DOMAIN MISMATCH for " + accession + " : expected = " + old_domain + ", actual = " + domain_in_db)
 
