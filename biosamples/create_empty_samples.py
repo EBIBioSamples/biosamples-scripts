@@ -4,12 +4,13 @@ import pandas as pd
 from mongo_connector import MongoConnector
 from config_params import DOMAIN
 
-ACCESSION_FILE_PATH = "../resources/cineca_synthrtic_data.csv"
+# ACCESSION_FILE_PATH = "../resources/cineca_synthetic_data.csv"
+ACCESSION_FILE_PATH = "../resources/lubek_bb_accessions.csv"
 
 
 def main():
     sample_creator = MongoSampleCreator()
-    release = datetime.utcnow()
+    release = datetime.utcnow().replace(year=3000)
     # sample_creator.create_empty_sample("SAMEA123890", "Fake1", DOMAIN, release)
     sample_creator.create_empty_samples(ACCESSION_FILE_PATH, DOMAIN, release)
 
@@ -30,12 +31,14 @@ class MongoSampleCreator:
                   "domain": domain,
                   "release": release,
                   "update": release,
+                  "create": release,
                   "attributes": [],
                   "relationships": [],
                   "externalReferences": [],
                   "organizations": [],
                   "contacts": [],
                   "publications": [],
+                  "certificates": [],
                   "data": [],"submittedVia" : "JSON_API"
                   }
 
@@ -46,7 +49,7 @@ class MongoSampleCreator:
     def get_accessions(accessions_file_path):
         print("Reading accessions from: " + accessions_file_path)
         pd_accessions = pd.read_csv(accessions_file_path, delimiter=",")
-        return pd_accessions["PROVATE_BIOSAMPLE_ID"].tolist(), pd_accessions["SAMPLE_ID"].tolist()
+        return pd_accessions["ACCESSION"].tolist(), pd_accessions["NAME"].tolist()
 
 
 if __name__ == '__main__':
