@@ -11,7 +11,7 @@ Scripts for changing the domain  and add organism attribute for all EGA samples 
 
 ## How to run
 
-• Create a file named BSD_ID_of_EGA_samples with all extracted Biosamples ID from ERAPRO, using this line: 
+• Create a file named `BSD_ID_of_EGA_samples` with all extracted Biosamples ID from ERAPRO, using this line: 
 
 `SELECT BIOSAMPLE_ID FROM SAMPLE WHERE BIOSAMPLE_ID LIKE ‘SAME%’ AND EGA_ID IS NOT NULL AND FIRST_CREATED > ‘$DATE’`
 
@@ -19,18 +19,6 @@ Scripts for changing the domain  and add organism attribute for all EGA samples 
 
 Last curation : 20-NOV-20
 
-### For example:
-`SELECT BIOSAMPLE_ID FROM SAMPLE WHERE BIOSAMPLE_ID LIKE ‘SAME%’ AND EGA_ID IS NOT NULL AND FIRST_CREATED > ‘20-NOV-20’`
+• Run  `bash Change_EGA_domain.sh`  
+You will need an AAP account to run this script, which allows to curate those samples.
 
-
-• Run  Change_EGA_domain.sh  
-
-### For example:
-
-`bash Change_EGA_domain.sh`
-
-`AAP Username: biosample-usr`
-
-`AAP Password: biosample-pwd`
-
-`Enter the file with all Biosamples ID: BSD_ID_of_EGA_samples`
