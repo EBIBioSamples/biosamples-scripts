@@ -7,7 +7,7 @@ import ast
     REMINDER: change '"templated" : true' to '"templated" : "true"' in json file.
 """
 
-def main(JsonFile, AAP_USERNAME, AAP_PASSWORD):
+def main(JsonFile, AAP_USERNAME, AAP_PASSWORD, EGA_domain):
     jf = open(JsonFile, 'r')
     file1 = open('BSD_API_for_EGA_samples.sh', 'w')
     file1.write('#!/bin/bash' + '\n' + '\n')
@@ -24,7 +24,7 @@ def main(JsonFile, AAP_USERNAME, AAP_PASSWORD):
         aux2 = json.dumps(aux1)
         aux3 = json.loads(aux2)
         sample = eval(aux3)
-        sample['domain'] = 'self.EGA_BioSamples_Demo'
+        sample['domain'] = EGA_domain
         sample['characteristics']['organism'] = [ {
                                                      "text" : "Homo sapiens",
                                                      "ontologyTerms" : [ "http://purl.obolibrary.org/obo/NCBITaxon_9606" ]
@@ -41,4 +41,4 @@ def main(JsonFile, AAP_USERNAME, AAP_PASSWORD):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2], sys.argv[3])
+    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
