@@ -11,5 +11,5 @@ read -p 'Enter the JSON file with all extracted samples:s ' cancer_samples
 # Create a file with all accession ID for all curated samples and another file to curate the samples.
 python cancer_curation.py $cancer_samples $AAP_USERNAME $AAP_PASSWORD
 
-# Run through BSD API.
+# Run through BioSamples API.
 bash curation_tumor.sh
