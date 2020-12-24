@@ -3,7 +3,7 @@ import json
 import re
 
 """
-    With Json file from the query 'diabetes' in BSD, write the inferred disease with ontology.
+    With Json file from the query 'diabetes' in BioSamples, write the inferred disease with ontology.
 """
 
 def main(JsonFile, AAP_USERNAME, AAP_PASSWORD):
