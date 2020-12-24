@@ -29,5 +29,5 @@ python Change_attributes_EGA.py Json_EGA_samples_ready.txt $AAP_USERNAME $AAP_PA
 # Check if there are not apostrophe left alone, which can create a bug in the curl command.
 sed "s/'[^h{ ]/'\\\\&'/g" BSD_API_for_EGA_samples.sh > BSD_API_for_EGA_samples_ready.sh
 
-# Run through BSD API
+# Run through BioSamples API
 bash BSD_API_for_EGA_samples_ready.sh
