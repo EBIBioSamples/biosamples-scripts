@@ -2,7 +2,7 @@ import sys
 
 
 """
-    With file with samples accession BSD ID, get all json files.
+    With file with samples accession BioSamples ID, get all json files.
     WARNING: remove EOF of AccessionFile
 """
 
