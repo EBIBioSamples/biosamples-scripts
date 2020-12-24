@@ -4,15 +4,16 @@
 read -p 'AAP Username: ' AAP_USERNAME
 read -sp 'AAP Password: ' AAP_PASSWORD
 
-#Ask for the text file with all Biosamples ID
+#Ask for the text file with all Biosamples ID and the EGA domain
 read -p 'Enter the file with all Biosamples ID: ' BSD_ID_of_EGA_samples
+read -p 'Enter the EGA domain: ' EGA_domain
 
 #Remove EOF, to avoid extracting all BSD samples
 perl -pi -e 'chomp if eof' $BSD_ID_of_EGA_samples
 
 # Extract BSD ID of EGA samples from ERAPRO (BSD_ID_of_EGA_samples.txt)
 # With BSD ID, write the curl command for BSD API to extract json file for each sample.
-python Import_BSD_API.py $BSD_ID_of_EGA_samples $AAP_USERNAME $AAP_PASSWORD
+python Import_BSD_API.py $BSD_ID_of_EGA_samples $AAP_USERNAME $AAP_PASSWORD $EGA_domain
 
 # Extract json file for each EGA sample.
 bash Import_json.sh
