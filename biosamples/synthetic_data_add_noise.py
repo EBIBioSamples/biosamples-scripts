@@ -54,7 +54,7 @@ def add_noise_to_column(df, column, edit_distance, percentage):
     for n in range(edit_records):
         random_row = random.randrange(0, total_records)
         value = df[column][random_row]
-        df[column][random_row] = edit_value(value, edit_distance)
+        df[column][random_row] = edit_value(str(value), edit_distance)
         print(df[column][random_row])
 
 
